@@ -8,7 +8,7 @@
       - mongodb
       - catalogue
       env: dev
-      vpc_id : vpc-056f8868e16248bca
+      
     tasks: 
     - name: create ec2 instance
       amazon.aws.ec2_instance:
@@ -16,7 +16,7 @@
         security_group: "{{ sg_id }}"
         image_id: "{{ ami_id }}"
         name: "{{ item }}"
-        vpc: "{{ vpc_id }}"
+        
         tags: 
           Project: roboshop
           Component: "{{ item }}"
