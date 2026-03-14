@@ -7,6 +7,7 @@
       instances:
       - mongodb
       - catalogue
+      env: dev
 
     tasks: 
     - name: create ec2 instance
