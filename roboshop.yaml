@@ -30,7 +30,7 @@
         msg: "{{ ec2_output }}"
 
     - name: Update DNS records
-    
+
       amazon.aws.route53:
         state: present
         zone: "{{ domain_name }}"
@@ -39,4 +39,5 @@
         ttl: 1
         value: "{{ item.instances[0].private_ip_address }}"
         wait: true
+        overwrite: true
       loop: "{{ ec2_output.results }}"
