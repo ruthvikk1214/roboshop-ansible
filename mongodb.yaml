@@ -4,8 +4,8 @@
   tasks:
   - name: Copy file with owner and permissions
     ansible.builtin.copy:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
     
   - name: MongoDB Installation
     ansible.builtin.dnf:
