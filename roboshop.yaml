@@ -9,6 +9,8 @@
       - catalogue
       env: dev
       domain_name: rk1214.in
+
+      
     tasks: 
     - name: create ec2 instance
       amazon.aws.ec2_instance:
