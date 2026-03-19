@@ -2,7 +2,7 @@
   hosts: mongodb
   become: yes
   tasks:
-  - name: Copy file with owner and permissions
+  - name: Copy repo file with owner and permissions
     ansible.builtin.copy:
       src: mongo.repo
       dest: /etc/yum.repos.d/mongo.repo
