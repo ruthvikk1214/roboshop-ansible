@@ -1,0 +1,49 @@
+- name: frontend configuration
+  hosts: frontend
+  become: yes
+
+  vars:
+    MONGODB_HOST: frontend-dev.rk1214.in
+
+  tasks:
+
+  - name: Disable old Nginx module
+    ansible.builtin.command: dnf module disable nginx -y
+    ignore_errors: yes
+
+  - name: Enable Nginx:1.24
+    ansible.builtin.command: dnf module enable nginx:1.24 -y
+
+  - name: Install nginx
+    ansible.builtin.dnf:
+      name: nginx
+      state: present
+
+  - name: Enable and Start Nginx
+    ansible.builtin.service:
+      enabled: yes
+      state: started
+
+  - name: Remove the default content that web server is serving
+    ansible.builtin.file:
+      path: /usr/share/nginx/html/*
+      state: absent
+
+  - name: Download the frontend content
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+      dest: /tmp/frontend.zip
+
+  - name: Unarchive the downloaded frontend content
+    ansible.builtin.unarchive:
+      src: /tmp/frontend.zip
+      dest: /usr/share/nginx/html 
+
+  - name: Copy the NGINX configuration file 
+    ansible.builtin.copy:
+      src: nginx.conf
+      dest: /etc/nginx/nginx.conf
+
+  - name: Restart the nginx service
+    ansible.builtin.service:
+      state: restarted
