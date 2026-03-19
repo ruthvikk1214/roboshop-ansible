@@ -34,12 +34,13 @@
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
       dest: /tmp/frontend.zip
-      remote_src: yes
+
 
   - name: Unarchive the downloaded frontend content
     ansible.builtin.unarchive:
       src: /tmp/frontend.zip
       dest: /usr/share/nginx/html 
+      remote_src: yes
 
   - name: Copy the NGINX configuration file 
     ansible.builtin.copy:
