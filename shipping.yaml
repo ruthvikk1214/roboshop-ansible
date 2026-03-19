@@ -6,9 +6,7 @@
 
     - name: Maven Installation
       ansible.builtin.dnf:
-        name: 
-          - maven
-          - mysql
+        name: maven
         state: present
         
     - name: Create roboshop system user
@@ -62,6 +60,11 @@
         name: shipping
         enabled: yes
         state: started
+
+    - name: Maven Installation
+      ansible.builtin.dnf:
+        name: maven
+        state: present
 
     - name: Start and enable the mysql service
       ansible.builtin.service:
