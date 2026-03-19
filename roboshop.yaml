@@ -5,8 +5,7 @@
       sg_id: sg-0eec592803ede7730
       ami_id: ami-0220d79f3f480ecf5
       instances:
-      - mongodb
-      - catalogue
+      - "{{ component }}"
       env: dev
       domain_name: rk1214.in
 
