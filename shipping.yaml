@@ -56,7 +56,7 @@
     - name: Reload systemd daemon
       ansible.builtin.systemd:
         daemon_reload: yes
-        
+
     - name: Start and enable the shipping service
       ansible.builtin.service:
         name: shipping
@@ -65,7 +65,7 @@
 
     - name: Start and enable the mysql service
       ansible.builtin.service:
-        name: mysql
+        name: mysqld
         enabled: yes
         state: started
 
