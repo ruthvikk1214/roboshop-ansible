@@ -1,5 +1,5 @@
   - name: instance creation using ansible
-    hosts:  all
+    hosts:  localhost
     connection: local
     vars:
       sg_id: sg-0eec592803ede7730
