@@ -1,0 +1,22 @@
+- name: redis configuration
+  hosts: redis
+  become: yes
+
+  vars:
+    MONGODB_HOST: redis-dev.rk1214.in
+
+  tasks:
+
+  - name: Disable old redis module
+    ansible.builtin.command: dnf module disable redis -y
+    ignore_errors: yes
+
+  - name: Enable redis:7
+    ansible.builtin.command: dnf module enable redis:7 -y
+
+  - name: Install redis
+    ansible.builtin.dnf:
+      name: redis
+      state: present
+
+  - name: Start redis service
