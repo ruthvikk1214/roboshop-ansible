@@ -1,5 +1,5 @@
   - name: Rabbitmq server configuration
-    hosts: Rabbitmq
+    hosts: rabbitmq
     become: yes 
 
     tasks:
