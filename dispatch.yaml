@@ -36,6 +36,11 @@
         dest: /app
         remote_src: yes
 
+    - name: Download Go dependencies
+      ansible.builtin.command: go mod tidy
+      args:
+        chdir: /app    
+
     - name: Build the application
       ansible.builtin.command: go build
       args:
