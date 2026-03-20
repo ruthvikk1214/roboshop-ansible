@@ -38,7 +38,7 @@
         src: /tmp/payment.zip
         dest: /app
         remote_src: yes
-        
+
     - name: Install Python dependencies
       ansible.builtin.pip:
         requirements: /app/requirements.txt
@@ -55,5 +55,6 @@
 
     - name: Enable and start the payment service  
       ansible.builtin.service:
+        name: payment
         enabled: yes
         state: started
