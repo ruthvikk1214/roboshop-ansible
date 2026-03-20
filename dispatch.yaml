@@ -30,15 +30,11 @@
         url: https://roboshop-artifacts.s3.amazonaws.com/dispatch-v3.zip
         dest: /tmp/dispatch.zip
 
-    - name: Initialize Go module
-      ansible.builtin.command: go mod init dispatch
-      args:
-        chdir: /app
-
-    - name: Download Go dependencies
-      ansible.builtin.command: go get
-      args:
-        chdir: /app
+    - name: Unarchive the code
+      ansible.builtin.unarchive:
+        src: /tmp/dispatch.zip
+        dest: /app
+        remote_src: yes
 
     - name: Build the application
       ansible.builtin.command: go build
