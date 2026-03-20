@@ -40,7 +40,7 @@
       args:
         chdir: /app
 
-    - name: Build the application
+    - name: Build dispatch app
       ansible.builtin.command: go build
       args:
         chdir: /app
