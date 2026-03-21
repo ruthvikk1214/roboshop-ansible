@@ -19,6 +19,11 @@
       replace: '0.0.0.0'
     ignore_errors: yes
 
+  - name: Install Mongo client
+    ansible.builtin.dnf:
+      name: mongodb-org-shell
+      state: present
+
   - name: Load MongoDB schema
     ansible.builtin.shell: |
       rm -rf /tmp/mongodb-main
