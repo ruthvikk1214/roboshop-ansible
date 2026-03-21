@@ -57,19 +57,24 @@
         group: roboshop
         recurse: yes
 
-    - name: Install Go dependencies (GOPATH mode)
+    - name: Initialize Go module
+      ansible.builtin.command: go mod init dispatch
+      args:
+        chdir: /app
+      become_user: roboshop
+      ignore_errors: yes
+
+    - name: Download Go dependencies
       ansible.builtin.shell: |
-        go get github.com/streadway/amqp
-        go get github.com/opentracing/opentracing-go
-        go get github.com/opentracing/opentracing-go/log
-        go get github.com/opentracing/opentracing-go/ext
+        export GO111MODULE=on
+        go mod tidy
       args:
         chdir: /app
       become_user: roboshop
 
     - name: Build the application
       ansible.builtin.shell: |
-        export GO111MODULE=off
+        export GO111MODULE=on
         go build
       args:
         chdir: /app
