@@ -24,7 +24,7 @@
       path: /etc/redis.conf
       regexp: '^bind'
       line: 'bind 0.0.0.0'
-
+    ignore_errors: yes
   - name: Disable protected mode
     ansible.builtin.lineinfile:
       path: /etc/redis.conf
