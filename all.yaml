@@ -11,3 +11,6 @@
 - import_playbook: dispatch.yaml
 
 - import_playbook: frontend.yaml
+
+# ✅ ADD HERE
+- import_playbook: healthcheck.yaml

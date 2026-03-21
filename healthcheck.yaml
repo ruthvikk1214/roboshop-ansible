@@ -1,0 +1,11 @@
+- name: Health Check - Catalogue
+  hosts: catalogue
+  tasks:
+    - name: Check catalogue health
+      uri:
+        url: http://localhost:8080/health
+        return_content: yes
+      register: result
+
+    - debug:
+        var: result.content

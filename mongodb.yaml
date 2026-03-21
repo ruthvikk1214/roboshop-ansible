@@ -25,6 +25,23 @@
       enabled: yes
       state: started
 
+  - name: Download MongoDB schema
+    get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/mongodb.zip
+      dest: /tmp/mongodb.zip
+
+  - name: Extract schema
+    unarchive:
+    src: /tmp/mongodb.zip
+    dest: /app
+    remote_src: yes
+
+  - name: Load catalogue schema
+    shell: mongo </app/schema/catalogue.js
+
+  - name: Load users schema
+    shell: mongo </app/schema/users.js
+  
   - name: Load catalogue schema
     shell: mongo --host mongodb-dev.rk1214.in </app/schema/catalogue.js
 
