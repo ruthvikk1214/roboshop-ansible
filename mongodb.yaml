@@ -26,13 +26,13 @@
       state: started
 
   - name: Download MongoDB schema
-    get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/mongodb.zip
-      dest: /tmp/mongodb.zip
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/mongo.zip
+      dest: /tmp/mongo.zip
 
-  - name: Extract schema
-    unarchive:
-      src: /tmp/mongodb.zip
+  - name: Unzip Mongo schema
+    ansible.builtin.unarchive:
+      src: /tmp/mongo.zip
       dest: /app
       remote_src: yes
 
