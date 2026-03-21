@@ -60,13 +60,13 @@
     - name: Download Go dependencies
       ansible.builtin.command: go mod tidy
       args:
-        chdir: /app/dispatch
+        chdir: /app
       become_user: roboshop
 
     - name: Build the application
       ansible.builtin.command: go build
       args:
-        chdir: /app/dispatch
+        chdir: /app
       become_user: roboshop
 
     - name: Copy dispatch service file
