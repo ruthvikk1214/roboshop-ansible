@@ -60,7 +60,9 @@
     
 
     - name: Build the application
-      ansible.builtin.command: go build
+      ansible.builtin.shell: |
+        export GO111MODULE=off
+        go build
       args:
         chdir: /app
       become_user: roboshop
