@@ -1,51 +1,30 @@
-- name: mongodb configuration
+- name: mongodb configure
   hosts: mongodb
   become: yes
   tasks:
-  - name: Copy repo file with owner and permissions
+  - name: copy mongo repo
     ansible.builtin.copy:
       src: mongo.repo
       dest: /etc/yum.repos.d/mongo.repo
-    
-  - name: MongoDB Installation
+
+  - name: install mongodb server
     ansible.builtin.dnf:
       name: mongodb-org
       state: present
   
-  
-  - name: Updating listen address
+  - name: allow remote connections
     ansible.builtin.replace:
       path: /etc/mongod.conf
-      regexp: 127.0.0.1 
-      replace: 0.0.0.0
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
 
-  - name: MongoDB Service Start
+  - name: start and enable mongodb
     ansible.builtin.service:
       name: mongod
       enabled: yes
       state: started
 
-  - name: Download MongoDB schema
-    ansible.builtin.get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/mongo.zip
-      dest: /tmp/mongo.zip
-
-  - name: Unzip Mongo schema
-    ansible.builtin.unarchive:
-      src: /tmp/mongo.zip
-      dest: /app
-      remote_src: yes
-
-  - name: Load catalogue schema
-    shell: mongo </app/schema/catalogue.js
-    when: catalogue_loaded is not defined
-
-  - name: Load users schema
-    shell: mongo </app/schema/users.js
-  
-  - name: Load catalogue schema
-    shell: mongo --host mongodb-dev.rk1214.in </app/schema/catalogue.js
-
-  - name: Load users schema
-    shell: mongo --host mongodb-dev.rk1214.in </app/schema/users.js
-  
+  # - name: restart mongodb
+  #   ansible.builtin.service:
+  #     name: mongod
+  #     state: restarted
