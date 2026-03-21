@@ -1,0 +1,26 @@
+- name: Restart all RoboShop services
+  hosts: all
+  become: yes
+
+  vars:
+    services:
+      - mongod
+      - redis
+      - rabbitmq-server
+      - mysqld
+      - catalogue
+      - user
+      - cart
+      - shipping
+      - payment
+      - dispatch
+      - nginx
+
+  tasks:
+
+    - name: Restart services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: restarted
+      loop: "{{ services }}"
+      ignore_errors: yes
