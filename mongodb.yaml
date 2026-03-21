@@ -21,7 +21,7 @@
 
   - name: Install Mongo client
     ansible.builtin.dnf:
-      name: mongodb-org-shell
+      name: mongodb-mongosh
       state: present
 
   - name: Load MongoDB schema
