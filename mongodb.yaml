@@ -32,9 +32,9 @@
 
   - name: Extract schema
     unarchive:
-    src: /tmp/mongodb.zip
-    dest: /app
-    remote_src: yes
+      src: /tmp/mongodb.zip
+      dest: /app
+      remote_src: yes
 
   - name: Load catalogue schema
     shell: mongo </app/schema/catalogue.js
