@@ -19,6 +19,14 @@
       replace: '0.0.0.0'
     ignore_errors: yes
 
+  - name: Load MongoDB schema
+    ansible.builtin.shell: |
+      curl -o /tmp/mongodb.zip https://roboshop-artifacts.s3.amazonaws.com/mongodb-v3.zip
+      unzip -o /tmp/mongodb.zip -d /tmp
+      cd /tmp/mongodb-main
+      mongo < catalogue.js
+      mongo < users.js  
+
   - name: start and enable mongodb
     ansible.builtin.service:
       name: mongod
