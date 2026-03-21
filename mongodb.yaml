@@ -12,6 +12,7 @@
       name: mongodb-org
       state: present
   
+  
   - name: Updating listen address
     ansible.builtin.replace:
       path: /etc/mongod.conf
@@ -23,3 +24,10 @@
       name: mongod
       enabled: yes
       state: started
+
+  - name: Load catalogue schema
+    shell: mongo --host mongodb-dev.rk1214.in </app/schema/catalogue.js
+
+  - name: Load users schema
+    shell: mongo --host mongodb-dev.rk1214.in </app/schema/users.js
+  
