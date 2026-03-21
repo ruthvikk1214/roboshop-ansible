@@ -38,6 +38,7 @@
 
   - name: Load catalogue schema
     shell: mongo </app/schema/catalogue.js
+    when: catalogue_loaded is not defined
 
   - name: Load users schema
     shell: mongo </app/schema/users.js
