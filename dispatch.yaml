@@ -57,11 +57,7 @@
         group: roboshop
         recurse: yes
 
-    - name: Download Go dependencies
-      ansible.builtin.command: go mod tidy
-      args:
-        chdir: /app
-      become_user: roboshop
+    
 
     - name: Build the application
       ansible.builtin.command: go build
