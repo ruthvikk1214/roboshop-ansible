@@ -21,8 +21,8 @@
 
   - name: Load MongoDB schema
     ansible.builtin.shell: |
-      curl -o /tmp/mongodb.zip https://roboshop-artifacts.s3.amazonaws.com/mongodb-v3.zip
-      unzip -o /tmp/mongodb.zip -d /tmp
+      rm -rf /tmp/mongodb-main
+      git clone https://github.com/roboshop-devops-project/mongodb.git /tmp/mongodb-main
       cd /tmp/mongodb-main
       mongo < catalogue.js
       mongo < users.js
