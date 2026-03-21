@@ -1,2 +1,16 @@
 - import_playbook: mongodb.yaml
 - import_playbook: redis.yaml
+- import_playbook: rabbitmq.yaml
+- import_playbook: mysql.yaml
+
+- import_playbook: catalogue.yaml
+- import_playbook: user.yaml
+- import_playbook: cart.yaml
+- import_playbook: shipping.yaml
+- import_playbook: payment.yaml
+- import_playbook: dispatch.yaml
+
+- import_playbook: frontend.yaml
+
+# ✅ ADD HERE
+- import_playbook: healthcheck.yaml
