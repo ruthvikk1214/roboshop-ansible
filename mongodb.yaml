@@ -29,8 +29,8 @@
       rm -rf /tmp/mongodb-main
       git clone https://github.com/roboshop-devops-project/mongodb.git /tmp/mongodb-main
       cd /tmp/mongodb-main
-      mongo < catalogue.js
-      mongo < users.js
+      mongosh < catalogue.js
+      mongosh < users.js
 
   - name: start and enable mongodb
     ansible.builtin.service:
